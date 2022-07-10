@@ -5,6 +5,8 @@ import math
 import sys
 import functools
 
+import src.globals
+
 
 # colors have also alpha
 BLACK = (0, 0, 0, 255)
@@ -87,15 +89,11 @@ def is_right_click(event: pygame.event.Event) -> bool:
 
 
 @functools.lru_cache
-def get_font(size, type_of_font=None) -> pygame.font.Font:
-    if type_of_font is None:
-        type_of_font = pygame.font.get_default_font()
-    if type_of_font.endswith(".ttf"):
-        font = pygame.font.Font(type_of_font, size)
-        return font
-
-    font = pygame.font.SysFont(type_of_font, size)
-    return font
+def get_font(size, font=None) -> pygame.font.Font:
+    if font is None:
+        return src.globals.font
+    else:
+        return pygame.font.Font(font, size)
 
 
 def wrap_multi_lines(
@@ -140,7 +138,7 @@ def blit_multiple_lines(
     x: int,
     y: int,
     lines: list,
-    window: pygame.surface.Surface,
+    display: pygame.surface.Surface,
     font: pygame.font.Font,
     centered_x=False,
     centered_x_pos: int = None,
@@ -152,7 +150,7 @@ def blit_multiple_lines(
     for i, text in enumerate(lines):
         rendered_text_surface = font.render(text, True, color)
         if centered_x:
-            window.blit(
+            display.blit(
                 rendered_text_surface,
                 (
                     centered_x_pos - rendered_text_surface.get_width() / 2,
@@ -160,7 +158,7 @@ def blit_multiple_lines(
                 ),
             )
         else:
-            window.blit(rendered_text_surface, (x, y + (i * height)))
+            display.blit(rendered_text_surface, (x, y + (i * height)))
 
 
 def pixel_perfect_collision(
@@ -179,9 +177,7 @@ def pixel_perfect_collision(
 
 
 def load_json(path):
-    with open(path, "r") as f:
-        data = json.loads(f.read())
-    return data
+    return json.loads(open(path, "r").read())
 
 
 def flatten(items):
@@ -197,6 +193,10 @@ def flatten(items):
 def text(txt, color, size=20, font_name=None):
     """Render a text on a surface. Results are cached."""
     return get_font(size, font_name).render(str(txt), True, color)
+
+
+def draw_text(font: pygame.font.Font, x, y, text, color):
+    src.globals.display.blit(font.render(text, True, color), (x, y))
 
 
 def blit_centered(screen, surface, rect):
@@ -270,3 +270,10 @@ def number_format(n: int, l: int) -> str:
     if len(ns) < l:
         return "0" * (l - len(ns)) + ns
     return ns
+
+
+# dumb stuff to replace when I have time:
+
+
+def draw_sprite(spr, frame, x, y):
+    src.globals.display.blit(spr, (x, y), frame)
