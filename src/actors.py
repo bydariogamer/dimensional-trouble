@@ -543,7 +543,7 @@ class Tux(Actor):
         if abs(self.xspeed) >= self.MAX_VEL:
             self.xspeed = self.MAX_VEL if self.xspeed > 0 else -self.MAX_VEL
 
-        # * If I uncomment this, Tux still doesn't move, but the animation plays
+        # * If I comment this if/else statement, Tux still doesn't move, but the animation plays
         if collision_check(
                 pygame.Rect(
                     self.shape.x + self.xspeed, self.shape.y, self.shape.w, self.shape.h

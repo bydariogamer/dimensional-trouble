@@ -15,7 +15,7 @@ def start_game():
     game.cam_x = DISP_WID / 2 - 16
     game.cam_y = DISP_HEI / 2 - 16
 
-    new_actor(Slime, 300, 250, None, "actorlayer")
+    #new_actor(Slime, 300, 250, None, "actorlayer")
 
     running = True
 
