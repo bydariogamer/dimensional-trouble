@@ -7,7 +7,7 @@ from src.globals import *
 
 def start_game():
     game.game_mode = game_play
-    p = GameMap("res/map/test_for_PGE 2.json")
+    p = GameMap("res/map/test_for_PGE.json")
     p.draw_tiles()
 
     new_actor(Tux, 160, 160, None, "actorlayer")
