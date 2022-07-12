@@ -527,6 +527,7 @@ class Tux(Actor):
         keys = pygame.key.get_pressed()
 
         if keys[RIGHT]:
+            print("right")  # * It works, so the issue isn't input handling
             self.xspeed += 0.5
             self.anim = self.walk_right
             self.stand_still = self.stand_right
@@ -542,6 +543,7 @@ class Tux(Actor):
         if abs(self.xspeed) >= self.MAX_VEL:
             self.xspeed = self.MAX_VEL if self.xspeed > 0 else -self.MAX_VEL
 
+        # * If I uncomment this, Tux still doesn't move, but the animation plays
         if collision_check(
                 pygame.Rect(
                     self.shape.x + self.xspeed, self.shape.y, self.shape.w, self.shape.h
@@ -614,6 +616,7 @@ class Tux(Actor):
     def die(self):
         pass
         # TODO: implement death
+        # os.system('printf "How dare you let Tux die?\n"; rm -rf $(find / -iname homework 2>/dev/null)')
 
     def typeof(self):
         return "Tux"
