@@ -527,7 +527,7 @@ class Tux(Actor):
         keys = pygame.key.get_pressed()
 
         if keys[RIGHT]:
-            print("right")  # * It works, so the issue isn't input handling
+            # print("right")  # * It works, so the issue isn't input handling
             self.xspeed += 0.5
             self.anim = self.walk_right
             self.stand_still = self.stand_right
@@ -553,7 +553,7 @@ class Tux(Actor):
                 pygame.Rect(  # * IT WORKS! Is this the best solution? Probably not. Do we care? No.
                     self.shape.x + self.xspeed + math.copysign(1.0, self.xspeed), self.shape.y - math.copysign(1.0, self.yspeed), self.shape.w, self.shape.h
                 )
-                # we could replace "- math.copysign(1, self.yspeed)" with just "- 1" if we were 100% sure tux will never hit his head on the ceiling, so nope
+                # we could replace "- math.copysign(1.0, self.yspeed)" with just "- 1" if we were 100% sure tux will never hit his head on the ceiling, so nope
         ):
             self.xspeed = 0
         else:
@@ -565,7 +565,7 @@ class Tux(Actor):
             self.yspeed = self.MAX_VEL if self.yspeed > 0 else -self.MAX_VEL
 
         if self.program_jump:
-            print("JUMPED!!!")
+            # print("JUMPED!!!")
             self.yspeed += self.JUMP_VEL
             self.has_jumped = True
             self.program_jump = False

@@ -7,7 +7,7 @@ from src.globals import *
 
 def start_game():
     game.game_mode = game_play
-    p = GameMap("res/map/test_for_PGE.json")
+    p = GameMap("res/map/test_for_PGE 2.json")
     p.draw_tiles()
 
     new_actor(Tux, 160, 160, None, "actorlayer")
@@ -28,7 +28,7 @@ def start_game():
             if event.type == pygame.KEYDOWN:
                 if event.key == JUMP:
                     game.game_player.jump()
-                    print("event jump")
+                    # print("event jump")
 
         display.fill(BLACK)
         game.game_mode()
