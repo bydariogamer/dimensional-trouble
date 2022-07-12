@@ -565,9 +565,11 @@ class Tux(Actor):
             self.yspeed = self.MAX_VEL if self.yspeed > 0 else -self.MAX_VEL
 
         if self.program_jump:
-            # print("JUMPED!!!")
-            self.yspeed += self.JUMP_VEL
-            self.has_jumped = True
+            # print(self.yspeed)  # ! What the hell, why is the yspeed exactly 0.2 when he's grounded?
+            if self.yspeed <= 0.2:  #  TODO: Figure the comment above out
+                # print("JUMPED!!!")
+                self.yspeed += self.JUMP_VEL
+                self.has_jumped = True
             self.program_jump = False
 
         if collision_check(
