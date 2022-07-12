@@ -48,10 +48,10 @@ game_mode = None
 
 config = {
     "key": {
-        "up": pygame.K_UP,
-        "down": pygame.K_DOWN,
-        "left": pygame.K_LEFT,
-        "right": pygame.K_RIGHT,
+        "up": pygame.K_w,
+        "down": pygame.K_s,
+        "left": pygame.K_a,
+        "right": pygame.K_d,
         "pause": pygame.K_ESCAPE,
         "accept": pygame.K_RETURN,
         "jump": pygame.K_SPACE
