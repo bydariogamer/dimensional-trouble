@@ -73,4 +73,3 @@ game_data = dict(map=None, posX=64, posY=64, cam_x=0, cam_y=0, dialogResponses={
 #################### Colors ######################
 
 BACKGROUND = pygame.Color(120, 150, 130)
-

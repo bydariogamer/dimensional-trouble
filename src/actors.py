@@ -544,10 +544,16 @@ class Tux(Actor):
             self.xspeed = self.MAX_VEL if self.xspeed > 0 else -self.MAX_VEL
 
         # * If I comment this if/else statement, Tux still doesn't move, but the animation plays
+        # ! Adding "False and " to make the else always be executed lets Tux move
+        # ! so the issue must be in the collision check. Btw if I jump onto a wall, Tux sticks to it
+        # * The issue must be that Tux's hitbox is intersecting the ground (and the walls when he sticks).
+        # * We need to push him further away when we detect a collision
+        # * which is horizontal (this will fix the movement) or vertical (this will fix the wall sticking)
         if collision_check(
-                pygame.Rect(
-                    self.shape.x + self.xspeed, self.shape.y, self.shape.w, self.shape.h
+                pygame.Rect(  # * IT WORKS! Is this the best solution? Probably not. Do we care? No.
+                    self.shape.x + self.xspeed + math.copysign(1.0, self.xspeed), self.shape.y - math.copysign(1.0, self.yspeed), self.shape.w, self.shape.h
                 )
+                # we could replace "- math.copysign(1, self.yspeed)" with just "- 1" if we were 100% sure tux will never hit his head on the ceiling, so nope
         ):
             self.xspeed = 0
         else:
