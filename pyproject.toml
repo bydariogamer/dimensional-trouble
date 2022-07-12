@@ -2,7 +2,7 @@
 name = "dimensional-trouble"
 version = "0.1.0"
 description = ""
-authors = ["bydariogamer <bydariogamer@inventati.org>, IlmastroStefanuzzo <ilmastrostefanuzzo@gmail.com>"]
+authors = ["bydariogamer <bydariogamer@inventati.org>", "IlmastroStefanuzzo <ilmastrostefanuzzo@gmail.com>"]
 license = "GNU General Public License v3.0+"
 
 [tool.poetry.dependencies]
